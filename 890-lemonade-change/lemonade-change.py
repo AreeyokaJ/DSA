@@ -15,11 +15,9 @@ class Solution:
                 change[bill] += 1 
 
 
-            elif bill == 20: 
-                if change[5] < 1:
-                    return False 
+            else: #bill = 20
 
-                elif change[10] > 0: 
+                if change[10] > 0 and change[5] > 0: 
                     change[10] -= 1 
                     change[5] -= 1 
 
