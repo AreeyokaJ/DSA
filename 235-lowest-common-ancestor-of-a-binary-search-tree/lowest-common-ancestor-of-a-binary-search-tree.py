@@ -10,10 +10,13 @@ class Solution:
         
         curr = root
 
+
         while curr:
             if p.val > curr.val and q.val > curr.val:
-                curr = curr.right 
+                curr = curr.right
+
             elif p.val < curr.val and q.val < curr.val:
                 curr = curr.left 
+
             else:
-                return curr 
+                return curr
