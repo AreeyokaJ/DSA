@@ -20,7 +20,6 @@ class Solution:
 
             if abs(left-right) > 1:
                 balanced = False 
-                return 0 
 
             return 1 + max(left, right)
 
