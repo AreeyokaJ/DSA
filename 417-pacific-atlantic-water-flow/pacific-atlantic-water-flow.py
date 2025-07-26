@@ -38,6 +38,8 @@ class Solution:
         for cordinate in atl:
             if cordinate in pac:
                 ans.append(cordinate)
+        
+        print(ans)
 
         return ans
 
