@@ -11,10 +11,10 @@ class Solution:
             if not root:
                 return True 
 
-            if not(root.val > left and root.val < right):
+            if root.val <= left or root.val >= right:
                 return False
             
-
+            
             return (dfs(root.left, left, root.val) and 
                 dfs(root.right, root.val, right))
         
