@@ -37,7 +37,7 @@ class Solution:
 
         for cordinate in atl:
             if cordinate in pac:
-                ans.append([cordinate[0], cordinate[1]])
+                ans.append(cordinate)
 
         return ans
 
