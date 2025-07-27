@@ -7,20 +7,14 @@ class Solution:
     def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
         
 
-        def reverse(head): 
-            if not head: 
-                return None 
+        prev = None 
+        curr = head 
 
-            newHead = head 
+        while curr: 
+            
+            temp = curr.next 
+            curr.next = prev 
+            prev = curr 
+            curr = temp 
 
-            if head.next: 
-                newHead = reverse(head.next) 
-                head.next.next = head 
-                head.next = None 
-
-            return newHead
-
-
-        
-
-        return reverse(head)
+        return prev 
