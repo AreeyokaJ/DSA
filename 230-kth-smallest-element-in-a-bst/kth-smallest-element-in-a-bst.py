@@ -29,24 +29,38 @@ class Solution:
         #     current = current.right
 
 
-        count = k
-        ans = 0 
+        # count = k
+        # ans = 0 
 
+        # def dfs(root):
+        #     nonlocal count
+        #     nonlocal ans
+
+        #     if not root:
+        #         return
+            
+        #     dfs(root.left)
+        #     count -= 1 
+        #     if count == 0:
+        #         ans = root.val
+        #         return
+
+        #     dfs(root.right)
+        
+        # dfs(root)
+        # return ans
+
+        ans = []
         def dfs(root):
-            nonlocal count
-            nonlocal ans
-
             if not root:
                 return
+
             
             dfs(root.left)
-            count -= 1 
-            if count == 0:
-                ans = root.val
-                return
-
+            ans.append(root.val)
             dfs(root.right)
+
         
         dfs(root)
-        return ans
+        return ans[k - 1]
 
