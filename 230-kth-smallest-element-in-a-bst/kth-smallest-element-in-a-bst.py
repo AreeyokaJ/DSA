@@ -12,18 +12,41 @@ class Solution:
         #dfs inorder - keep a global count variable return 
         #dfs inorder , iterative 
 
-        stack = []
-        current = root
+        # stack = []
+        # current = root
 
-        while stack or current:
-            while current:
-                stack.append(current)
-                current = current.left
+        # while stack or current:
+        #     while current:
+        #         stack.append(current)
+        #         current = current.left
                 
 
-            current = stack.pop()
-            k -= 1
-            if k == 0:
-                return current.val
+        #     current = stack.pop()
+        #     k -= 1
+        #     if k == 0:
+        #         return current.val
             
-            current = current.right
+        #     current = current.right
+
+
+        count = k
+        ans = 0 
+
+        def dfs(root):
+            nonlocal count
+            nonlocal ans
+
+            if not root:
+                return
+            
+            dfs(root.left)
+            count -= 1 
+            if count == 0:
+                ans = root.val
+                return
+
+            dfs(root.right)
+        
+        dfs(root)
+        return ans
+
