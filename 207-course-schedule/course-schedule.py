@@ -21,7 +21,7 @@ class Solution:
             visit.remove(course)
             preMap[course] = []
             return True
-        
+       
 
         for course in range(numCourses):
             if not dfs(course): return False
