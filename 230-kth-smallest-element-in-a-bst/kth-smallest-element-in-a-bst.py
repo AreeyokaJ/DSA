@@ -6,63 +6,24 @@
 #         self.right = right
 class Solution:
     def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
-        #recursive dfs inorder - keep count and return once we hit the correct number 
-        count = 0 
-        answer = 0 
+        
 
-        def inorder(root): 
-            nonlocal count, answer
+        #dfs inorder - store it to an array {recursive} return k - 1 in array
+        #dfs inorder - keep a global count variable return 
+        #dfs inorder , iterative 
 
-            if not root:
-                return 
+        stack = []
+        current = root
 
-            inorder(root.left)
+        while stack or current:
+            while current:
+                stack.append(current)
+                current = current.left
+                
 
-            #visit 
-            count += 1 
-            if count == k:
-                answer = root.val 
-                return 
-
-            inorder(root.right)
-
-        inorder(root) 
-        return answer
-         
-        #recursive dfs inorder - store it into an array, and then return k -1  
-        # ordered_nums = [] 
-
-        # def inorder(root):
-        #     if not root:
-        #         return 
-
-        #     inorder(root.left)
-
-        #     #visit 
-        #     ordered_nums.append(root.val)
-
-        #     inorder(root.right) 
-
-        #     return 
-
-        # inorder(root)
-        # return ordered_nums[k-1]
-
-
-        #ITERATIVE DFS SOLUTION 
-        #stack = []
-
-        # curr = root
-
-        # while stack or curr:
-        #     while curr:
-        #         stack.append(curr)
-        #         curr = curr.left 
-
-        #     curr = stack.pop()
-
-        #     k -= 1 
-        #     if k == 0:
-        #         return curr.val
-
-        #     curr = curr.right 
+            current = stack.pop()
+            k -= 1
+            if k == 0:
+                return current.val
+            
+            current = current.right
