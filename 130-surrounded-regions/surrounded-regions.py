@@ -7,39 +7,44 @@ class Solution:
         rows = len(board)
         cols = len(board[0])
 
-        #dfs 
         def dfs(r, c):
-            if (min(r, c) < 0 or r == rows or c == cols or 
-                board[r][c] != 'O'):
-                return  
-        
+            if (min(r, c) < 0 or r == rows or c == cols 
+                or board[r][c] != 'O'):
+                return 
+            
             board[r][c] = 'T'
+
 
             dfs(r + 1, c)
             dfs(r - 1, c)
             dfs(r, c + 1)
-            dfs(r, c - 1)
+            dfs(r, c - 1 )
 
-
-        #run dfs on all border nodes
-        for r in range(rows):
+        
+        #perform dfs alg on all the borders 
+        for r in range(rows): 
             dfs(r, 0)
-            dfs(r, cols - 1) 
+            dfs(r, cols - 1)
+
 
         for c in range(cols):
             dfs(0, c)
-            dfs(rows - 1, c)
+            dfs(rows - 1, c) 
 
-
-        #flip all O's to X's 
+        #mark all of the O's with X 
         for r in range(rows):
             for c in range(cols):
                 if board[r][c] == 'O':
                     board[r][c] = 'X'
 
-
-        #flip all T's to O's 
+        #turn all the T's to O's 
         for r in range(rows):
             for c in range(cols):
                 if board[r][c] == 'T':
                     board[r][c] = 'O'
+
+
+        
+
+
+            
