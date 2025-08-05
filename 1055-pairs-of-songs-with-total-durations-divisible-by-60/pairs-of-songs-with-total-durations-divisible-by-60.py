@@ -2,7 +2,7 @@ class Solution:
     def numPairsDivisibleBy60(self, time: List[int]) -> int:
         
         count = 0 
-        remainders = defaultdict(int)
+        remainders = [0] * 60
     
         for t in time:
             num_needed = 60 - (t % 60)
