@@ -5,7 +5,6 @@ class Solution:
 
         for char in s:
             chars[char] += 1 
-
         
         longest = 0 
         longest_odd = 0
