@@ -7,20 +7,11 @@
 class Solution:
     def maxDepth(self, root: Optional[TreeNode]) -> int:
         
-        if not root:
-            return 0 
-
-        stack = [[root, 1]]
-        res = 0  
-
-        while stack: 
-            node, depth = stack.pop()
-
-            if node: 
-                res = max(depth, res) 
-                stack.append([node.left, depth +1])
-                stack.append([node.right, depth + 1]) 
+        def height(root):
+            if not root:
+                return 0 
             
-        
-        return res
+    
+            return 1 + max(height(root.left), height(root.right))
 
+        return height(root) 
