@@ -3,35 +3,34 @@ class Solution:
         
         preMap = {i:[] for i in range(numCourses)}
 
-        for course, preReq in prerequisites:
+        
+        for course, preReq in prerequisites: 
             preMap[course].append(preReq)
 
-        
-        output = []
-        visit, cycle = set(), set()
+        visit = set()
+        cycle = set() 
+
+        ans = []
 
         def dfs(course):
-            if course in cycle:
-                return False
-
             if course in visit:
-                return True 
+                return True
+            if course in cycle:
+                return False 
 
             cycle.add(course)
-            
-            for preReq in preMap[course]: 
+
+            for preReq in preMap[course]:
                 if not dfs(preReq): return False 
 
-            cycle.remove(course) 
-            visit.add(course)
-            output.append(course)
+            ans.append(course)
+            cycle.remove(course)
+            visit.add(course) 
             return True 
 
-        
         for course in range(numCourses):
-            if not dfs(course):
-                return [] 
+            if not dfs(course): return []
+
         
-        return output
-        
+        return ans 
 
