@@ -40,12 +40,12 @@ class Solution:
             i += 1
     
         #handle last line 
-        last_line = " ".join(line)
-        trailing = maxWidth - len(last_line) 
-        res.append(last_line + " "  * trailing)
+        #last_line = " ".join(line)
+        #trailing = maxWidth - len(last_line) 
+        #res.append(last_line + " "  * trailing)
 
-        #extra_spaces = maxWidth - length - (len(line) - 1)  
-        #res.append(" ".join(line) + " " * extra_spaces)
+        extra_spaces = maxWidth - length - (len(line) - 1)  
+        res.append(" ".join(line) + " " * extra_spaces)
         return res
 
 
