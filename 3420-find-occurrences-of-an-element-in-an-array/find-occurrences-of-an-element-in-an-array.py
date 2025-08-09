@@ -1,22 +1,19 @@
 class Solution:
     def occurrencesOfElement(self, nums: List[int], queries: List[int], x: int) -> List[int]:
         
-        #map occurrene to index 
-        occurence = 1 
-        occIndex = defaultdict(int) 
+    
+        locations = []
         ans = []
 
         for i, num in enumerate(nums):
             if num == x:
-                occIndex[occurence] = i
-                occurence += 1 
-        
-        #occIndex = {1:0, 2:2}
+                locations.append(i)
 
+        
         for query in queries:
-            if query in occIndex:
-                ans.append(occIndex[query])
-            else:
+            if query > len(locations):
                 ans.append(-1)
+            else:
+                ans.append(locations[query-1])
 
         return ans
