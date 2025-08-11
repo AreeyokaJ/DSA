@@ -11,7 +11,7 @@ class Solution:
             if prices[l] < prices[r]:
                 max_price = max(prices[r] - prices[l], max_price)
             
-            if prices[l] > prices[r]:
+            elif prices[l] > prices[r]:
                 l = r 
             
             r += 1 
