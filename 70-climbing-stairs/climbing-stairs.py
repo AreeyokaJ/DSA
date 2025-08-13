@@ -1,20 +1,17 @@
 class Solution:
     def climbStairs(self, n: int) -> int:
         
-        if n < 3:
-            return n 
-
+        if n == 1:
+            return 1 
         
-        dp = [1, 2] 
+        if n == 2:
+            return 2 
 
+        dp = [1, 2]
 
-        i = 3 
-
-        while i <= n: 
+        for i in range(2, n): 
             temp = dp[1] 
             dp[1] = dp[0] + dp[1]
-            dp[0] = temp
-            i += 1
+            dp[0] = temp 
 
         return dp[1]
-
