@@ -1,23 +1,18 @@
 class Solution:
     def numPairsDivisibleBy60(self, time: List[int]) -> int:
-        
-        count = 0 
-        remainders = [0] * 60
-    
-        for t in time:
+        arr = [0] * 60 
+        res = 0 
+
+        for t in time: 
             num_needed = 60 - (t % 60)
-
-            if t % 60 == 0:
-                count += remainders[0]
-
+            
+            if num_needed == 60:
+                res += arr[0] 
 
             else:
-                count += remainders[num_needed]
+                res += arr[num_needed]
 
-            remainders[t % 60] += 1
-            
-               
+            arr[t % 60] += 1 
 
-
-        return count
-  
+        
+        return res
