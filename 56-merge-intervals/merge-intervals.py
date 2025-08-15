@@ -1,21 +1,16 @@
 class Solution:
     def merge(self, intervals: List[List[int]]) -> List[List[int]]:
         
-        intervals.sort(key = lambda i : i[0])
-        output = [intervals[0]]
+        intervals.sort(key = lambda i:i[0])
+        ans = [intervals[0]] 
 
-        for start, end in intervals[1:]:
-            endInterval = output[-1][1]
+        for start, end in intervals:
+            lastEnd = ans[-1][1]
 
-            if start <= endInterval:
-                output[-1][1] = max(endInterval, end)
+            if start <= lastEnd:
+                ans[-1][1] = max(lastEnd, end)
             
-            else: 
-                output.append([start, end]) 
-
-            
-        return output
-
-
-
-
+            else:
+                ans.append([start, end])
+        
+        return ans
