@@ -1,30 +1,30 @@
 class Solution:
     def findPairs(self, nums: List[int], k: int) -> int:
         
-        numbers = defaultdict(int)
+        diff_nums = defaultdict(int) 
+
+        pairs = set()
 
         for num in nums:
-            numbers[num] += 1 
+            diff_nums[num] += 1 
 
-        unique_pairs = set()
+        #num_needed  = current_num - k 
+
+        #current_nun - num_needed = k 
+
 
         for num in nums: 
-            if num - k in numbers:
-                if k == 0 and numbers[num] == 1:
-                    continue
-                pair = (max(num, num - k), min(num, num - k))
+            num_needed = num - k 
 
-                if pair not in unique_pairs:
-                    unique_pairs.add(pair)
-                  
+            if k == 0:
+                if diff_nums[num] > 1 and (num, num) not in pairs:
+                    pairs.add((num, num))
+            elif num_needed in diff_nums: 
+                if (num_needed, num) not in pairs:
+                    pairs.add((num_needed, num))
 
-            
-        return len(unique_pairs)
+        return len(pairs)
+        
 
-
-
-
-
-
-
-         
+        return len(pairs)
+        
