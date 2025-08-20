@@ -1,26 +1,45 @@
 class Solution:
     def canReorderDoubled(self, arr: List[int]) -> bool:
         
-        negative = [n for n in arr if n < 0]
-        positive = [n for n in arr if n > 0]
-
-        arr = sorted(negative, reverse=True) + sorted(positive)
-
-        counter = defaultdict(int)
+        
+        negatives = []
+        array = []
 
         for num in arr:
-            counter[num] += 1 
+            if num >= 0: 
+                array.append(num)
+            else:
+                negatives.append(num) 
 
         
-        for num in arr: 
+        negatives.sort(reverse=True)
+        array.sort() 
+
+        negatives.extend(array) 
+
+        print(negatives)
+        counter = defaultdict(int) 
+
+        for num in negatives:
+            counter[num] += 1 
+
+        for num in negatives:
             if counter[num] == 0:
                 continue 
+            else:
+                counter[num] -= 1 
 
-            if counter[num * 2] == 0:
+            if counter[num *2] > 0:
+                counter[num *2] -= 1 
+            else:
                 return False 
-
-            else: 
-                counter[num * 2] -= 1 
-                counter[num] -= 1
-
+        
         return True
+
+        
+
+
+
+
+
+    
