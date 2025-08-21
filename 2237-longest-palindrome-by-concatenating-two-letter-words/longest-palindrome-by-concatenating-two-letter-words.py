@@ -1,33 +1,32 @@
 class Solution:
     def longestPalindrome(self, words: List[str]) -> int:
-        
-        diff = {}
-        same = {}
-        odds = 0 
-        res = 0
+
+
+        length = 0 
+        odd = False 
+
+        same = defaultdict(int)
+        different = defaultdict(int)
 
         for word in words: 
-            if word[0] == word[1]:
-                same[word] = same.get(word, 0) + 1
-                res += 2 
-            
+            if word[0] != word[1]: 
+                reverse = word[1] + word[0]
+                if reverse in different and different[reverse] > 0: 
+                    different[reverse] -= 1 
+                    length += 4  
+                else: 
+                    different[word] += 1
+
             else: 
-                rev = word[1] + word[0] 
-                if rev in diff and diff[rev] > 0:
-                    diff[rev] -= 1 
-                    res += 4 
-                else:
-                    diff[word] = diff.get(word, 0) + 1 
-            
+                same[word] += 1  
 
+            
+        
         for word in same: 
-            if same[word] % 2 == 1:
-                odds += 1
+            length += same[word] // 2 * 4
+            if same[word] % 2 == 1: 
+                odd = True 
 
-                if odds > 1:
-                    res -= 2 
-            
-        return res
-
+        return length + 2 if odd else length 
 
         
