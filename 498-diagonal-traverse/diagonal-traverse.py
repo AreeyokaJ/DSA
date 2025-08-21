@@ -4,42 +4,44 @@ class Solution:
         rows = len(mat)
         cols = len(mat[0])
 
-        going_up = True 
 
-        row = 0 
-        col = 0
+        goingUp = True 
 
         ans = [] 
+        row = 0 
+        col = 0 
+
 
         while len(ans) < rows * cols: 
-            if going_up: 
-                while row >= 0 and col < cols:
+            if goingUp:
+                while col < cols and row >= 0:
+                    print("row", row, "col", col)
                     ans.append(mat[row][col])
-                    col += 1 
                     row -= 1 
-
-                if col == cols: 
-                    row += 2 
-                    col -= 1 
-                else: 
-                    row += 1  
+                    col += 1 
                 
-                going_up = False
+                if col == cols: 
+                    col -= 1 
+                    row += 2 
+                else: 
+                    row += 1 
 
-            else: 
+                goingUp = False
+            
+            else:
                 while col >= 0 and row < rows:
                     ans.append(mat[row][col])
                     row += 1 
                     col -= 1 
                 
-                if row == rows: 
-                    col += 2 
+
+                if row == rows:
                     row -= 1 
-                else: 
-                    col += 1
+                    col += 2 
                 
-                going_up = True
+                else: 
+                    col += 1 
+
+                goingUp = True
 
         return ans
-
-            
