@@ -1,16 +1,17 @@
 class Solution:
     def findDiagonalOrder(self, nums: List[List[int]]) -> List[int]:
         
-        nums_dict = defaultdict(list)
+        sums = defaultdict(list)
 
-        for i, num_arr in enumerate(nums):
-            for j, num in enumerate(num_arr): 
-                nums_dict[i + j].append(num)
+        for i, row in enumerate(nums):
+            for j in range(len(row)):
+                sums[i + j].append(nums[i][j])
 
-
-        res = [] 
-
-        for s in nums_dict: 
-            res.extend(reversed(nums_dict[s]))
         
-        return res
+        ans = [] 
+
+
+        for s in sums:
+            ans.extend(reversed(sums[s]))
+
+        return ans
