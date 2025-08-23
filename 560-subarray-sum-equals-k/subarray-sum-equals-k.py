@@ -3,18 +3,16 @@ class Solution:
         
 
 
-        prefixes = {0:1} 
+        prefixes = {0:1}
+
         current_sum = 0 
+        result = 0 
 
-        result = 0
-        
-        for num in nums: 
-            current_sum += num
-            diff = current_sum - k
+        for num in nums:
+            current_sum += num 
+            diff = current_sum - k 
 
-            result += prefixes.get(diff, 0) 
+            result += prefixes.get(diff, 0)
+            prefixes[current_sum] = prefixes.get(current_sum, 0) + 1
 
-            prefixes[current_sum] = prefixes.get(current_sum, 0) + 1 
-
-        
         return result
