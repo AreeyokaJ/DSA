@@ -1,21 +1,23 @@
 class Solution:
     def occurrencesOfElement(self, nums: List[int], queries: List[int], x: int) -> List[int]:
         
-        occurrences = {} 
+        occurrences = [-1] * len(nums) 
 
-        occurrence = 1 
+        occurrence = 0 
 
-        for i in range(len(nums)): 
-            if nums[i] == x: 
+        res = []
+
+        for i, num in enumerate(nums): 
+            if num == x: 
                 occurrences[occurrence] = i 
                 occurrence += 1 
 
-        ans = []
+            
         for query in queries: 
-            if query not in occurrences: 
-                ans.append(-1)
+            print(query- 1)
+            if query > len(occurrences) or occurrences[query - 1] == -1: 
+                res.append(-1) 
             else:
-                ans.append(occurrences[query])
+                res.append(occurrences[query - 1])
 
-
-        return ans
+        return res
