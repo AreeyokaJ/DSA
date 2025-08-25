@@ -1,18 +1,18 @@
 class Solution:
     def climbStairs(self, n: int) -> int:
         
-        cache = {}
-        def dp(n):
-            if n == 1:
-                return 1
-            if n == 2:
-                return 2 
+        if n <= 2:
+            return n 
 
-            if n in cache:
-                return cache[n] 
+        
+        i = 3 
+        dp = [1, 2]
 
-            cache[n] = dp(n - 1) + dp(n - 2) 
+        while i <= n: 
+            temp = dp[1]
+            dp[1] = dp[0] + dp[1]
+            dp[0] = temp 
 
-            return cache[n]
+            i += 1 
 
-        return dp(n)
+        return dp[1]
