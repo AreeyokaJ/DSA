@@ -5,26 +5,23 @@ class Solution:
         cols = len(grid[0])
 
         def dfs(r, c): 
-            nonlocal count 
             if min(r,c) < 0 or r == rows or c == cols or grid[r][c] == 0:
-                return  
+                return 0
 
             grid[r][c] = 0 
-            count += 1 
-            dfs(r +1, c) 
-            dfs(r - 1, c) 
-            dfs(r, c+ 1)
-            dfs(r, c - 1)
+            count = 0  
+            count += dfs(r +1, c) 
+            count += dfs(r - 1, c) 
+            count += dfs(r, c+ 1)
+            count += dfs(r, c - 1)
 
-            return 
+            return count + 1
         
         ans = 0 
 
         for r in range(rows): 
             for c in range(cols): 
                 if grid[r][c] == 1: 
-                    count = 0 
-                    dfs(r, c)
-                    ans = max(count, ans)
+                    ans = max(dfs(r, c), ans)
 
         return ans
