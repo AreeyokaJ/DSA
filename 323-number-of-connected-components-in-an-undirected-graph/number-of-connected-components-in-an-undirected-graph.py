@@ -1,12 +1,6 @@
 class Solution:
     def countComponents(self, n: int, edges: List[List[int]]) -> int:
         
-        adj = {i:[] for i in range(n)}
-
-
-        for n1, n2 in edges:
-            adj[n1].append(n2)
-            adj[n2].append(n1)
 
         
         #we start with one node 0 
@@ -19,6 +13,13 @@ class Solution:
             #if the node is not in vist then we run dfs again 
                 #connected components = 2 
 
+        adj = {i:[] for i in range(n)}
+
+
+        for n1, n2 in edges:
+            adj[n1].append(n2)
+            adj[n2].append(n1)
+
         visit = set() 
 
         def dfs(node):
@@ -30,16 +31,14 @@ class Solution:
                 
                 dfs(nei) 
 
+        connected = 0
         
-        connected = 1 
-        dfs(0)
-
-        for n in range(1, n):
-            if n in visit:
+        for i in range(n):
+            if i in visit:
                 continue 
             
             connected += 1
 
-            dfs(n) 
+            dfs(i) 
         
         return connected
