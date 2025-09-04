@@ -14,9 +14,6 @@ class Solution:
 
 
         def dfs(node):
-
-            if node in visit:
-                return 
             
             visit.add(node)
 
