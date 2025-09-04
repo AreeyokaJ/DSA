@@ -12,10 +12,9 @@ class Solution:
                 return 
             
             # already visited or blocked
-            if (r, c) in visit or rooms[r][c] == -1:
+            if rooms[r][c] != 2147483647 or rooms[r][c] == -1:
                 return 
 
-            visit.add((r, c))
             queue.append((r,c))
             rooms[r][c] = d 
 
@@ -30,7 +29,6 @@ class Solution:
             for c in range(cols):
                 if rooms[r][c] == 0:
                     queue.append((r,c))
-                    visit.add((r, c))
 
         
         d = 1
