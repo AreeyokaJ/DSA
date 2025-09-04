@@ -2,43 +2,37 @@ class Solution:
     def countComponents(self, n: int, edges: List[List[int]]) -> int:
         
 
-        
-        #we start with one node 0 
-            #run dfs and add the nodes to visit 
-            #connected components = 1 
-
-        #we cycle through the rest of the nodes
-            #if the node is in visit thenn we continue 
-
-            #if the node is not in vist then we run dfs again 
-                #connected components = 2 
-
         adj = {i:[] for i in range(n)}
-
 
         for n1, n2 in edges:
             adj[n1].append(n2)
             adj[n2].append(n1)
 
+        
         visit = set() 
 
+
+
         def dfs(node):
+
+            if node in visit:
+                return 
+            
             visit.add(node)
 
-            for nei in adj[node]:
-                if nei in visit:
+            for neighbor in adj[node]: 
+                if neighbor in visit:
                     continue 
                 
-                dfs(nei) 
+                dfs(neighbor) 
 
+        
         connected = 0
-        
-        for i in range(n):
-            if i in visit:
-                continue 
-            
-            connected += 1
 
-            dfs(i) 
-        
+        for node in range(n):
+
+            if node not in visit:
+                dfs(node)
+                connected += 1 
+
         return connected
