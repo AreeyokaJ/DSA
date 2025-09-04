@@ -19,7 +19,6 @@ class Solution:
             for c in range(cols):
                 if grid[r][c] == 2:
                     queue.append((r,c))
-                    rotten += 1 
 
                 if grid[r][c] == 1:
                     fresh += 1 
@@ -40,7 +39,6 @@ class Solution:
 
                     queue.append((dr + r, dc + c))
                     grid[dr + r][dc + c] = 2
-                    rotten += 1 
                     fresh -= 1 
             
             minutes += 1 
