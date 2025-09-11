@@ -4,36 +4,32 @@ class Solution:
         Do not return anything, modify rooms in-place instead.
         """
         
-
-        def add_rooms(r, c):
-            nonlocal d
-            # out of bounds 
-            if (min(r, c) < 0 or r == rows  or c == cols):
-                return 
-            
-            # already visited or blocked
-            if rooms[r][c] != 2147483647 or rooms[r][c] == -1:
-                return 
-
-            queue.append((r,c))
-            rooms[r][c] = d 
-
-            
         rows = len(rooms)
         cols = len(rooms[0])
         queue = deque() 
-        visit = set() 
+
+        def add_rooms(r, c):
+            nonlocal d 
+
+            if min(r, c) < 0 or r == rows or c == cols:
+                return 
+            
+            if rooms[r][c] != 2147483647:
+                return 
+
+            rooms[r][c] = d 
+            queue.append((r, c))
 
 
         for r in range(rows):
             for c in range(cols):
                 if rooms[r][c] == 0:
-                    queue.append((r,c))
-
+                    queue.append((r, c))
+                
         
         d = 1
 
-        while queue: 
+        while queue:
 
             for i in range(len(queue)):
                 r, c = queue.popleft()
@@ -41,7 +37,8 @@ class Solution:
                 add_rooms(r + 1, c)
                 add_rooms(r - 1, c)
                 add_rooms(r, c + 1)
-                add_rooms(r, c - 1) 
-
-
+                add_rooms(r, c - 1)
+            
             d += 1 
+
+    
