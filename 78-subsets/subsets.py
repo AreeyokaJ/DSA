@@ -5,18 +5,18 @@ class Solution:
         ans = [] 
 
         def dfs(i):
-            
             if i == len(nums):
                 ans.append(subset.copy())
-                return
+                return 
 
+            
             subset.append(nums[i])
-            dfs(i + 1) 
+            dfs(i + 1)
 
             subset.pop()
-            dfs(i + 1) 
+            dfs(i + 1)
 
-            return
+            return 
 
         dfs(0)
         return ans
