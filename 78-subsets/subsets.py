@@ -4,6 +4,8 @@ class Solution:
         subset = [] 
         ans = [] 
 
+        if len(nums) == 0:
+            return []
         def dfs(i):
             if i == len(nums):
                 ans.append(subset.copy())
