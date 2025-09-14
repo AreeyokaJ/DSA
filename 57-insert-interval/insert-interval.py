@@ -2,23 +2,23 @@ class Solution:
     def insert(self, intervals: List[List[int]], newInterval: List[int]) -> List[List[int]]:
         
 
-        output = [] 
+        intervals.sort(key = lambda i :i[0])
+        res = []
 
         for i in range(len(intervals)): 
             
-            #it goes before the current interval 
-            if newInterval[1] < intervals[i][0]: 
-                output.append(newInterval) 
-                return output + intervals[i:len(intervals)]
+            if newInterval[1] < intervals[i][0]:
+                res.append(newInterval)
+                return res + intervals[i:]
 
-            #it goes after the current interval 
-            if newInterval[0] > intervals[i][1]:
-                output.append(intervals[i])
+            elif intervals[i][1] < newInterval[0]:
+                res.append(intervals[i])
             
-            #it overlaps
-            else: 
-                newInterval = [min(intervals[i][0], newInterval[0]), max(intervals[i][1], newInterval[1])]
+            else:
+                newInterval[0] = min(intervals[i][0], newInterval[0])
+                newInterval[1] = max(intervals[i][1], newInterval[1])
+        
+        res.append(newInterval)
+        return res
 
-
-        output.append(newInterval) 
-        return output
+        
