@@ -1,23 +1,21 @@
 class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> List[str]:
         
-
+        wordDict = set(wordDict) 
+        res = [] 
+        combination = [] 
         def backtrack(i):
             if i == len(s):
-                ans.append(" ".join(res))
+                res.append(" ".join(combination))
                 return 
-            
-            for j in range(i, len(s)):
-                word = s[i:j + 1]
-                if word in wordDict:
-                    
-                    res.append(word)
-                    backtrack(j + 1)
-                    res.pop()
-                
-        wordDict = set(wordDict)
-        ans = [] 
-        res = [] 
-        backtrack(0)
 
-        return ans
+            word = ""
+            for i in range(i, len(s)):
+                word += s[i] 
+                if word in wordDict:
+                    combination.append(word)
+                    backtrack(i + 1) 
+                    combination.pop()
+            return 
+        backtrack(0)
+        return res
