@@ -25,6 +25,7 @@ class RandomizedCollection:
             self.nums[index] = self.nums[-1]
             self.indicies[last].remove(len(self.nums) - 1)
             self.indicies[last].add(index)
+            self.indicies[last].add(index)
             
         self.nums.pop() 
 
