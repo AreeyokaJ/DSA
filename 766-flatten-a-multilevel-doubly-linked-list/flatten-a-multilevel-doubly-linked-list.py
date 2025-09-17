@@ -16,26 +16,26 @@ class Solution:
 
         dummy = Node(0)
 
-        curr = dummy 
+        temp = dummy 
 
         stack = [head]
 
 
         while stack:
-            temp = stack.pop() 
+            curr = stack.pop() 
 
-            if temp.next:
-                stack.append(temp.next)
+            if curr.next:
+                stack.append(curr.next)
             
-            if temp.child:
-                stack.append(temp.child)
+            if curr.child:
+                stack.append(curr.child)
 
-            curr.next = temp 
-            temp.prev = curr 
+            temp.next = curr 
+            curr.prev = temp 
 
-            temp.child = None 
+            curr.child = None 
 
-            curr = temp 
+            temp = curr
 
 
         dummy.next.prev = None 
