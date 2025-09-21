@@ -10,21 +10,21 @@ from typing import Optional
 class Solution:
     def cloneGraph(self, node: Optional['Node']) -> Optional['Node']:
         
-        copy = {}
+        clones = {}
 
         def clone(node):
             if not node:
                 return None 
+            
+            if node in clones:
+                return clones[node] 
 
-            if node in copy:
-                return copy[node]
-
-            double = Node(node.val)
-            copy[node] = double 
+            copy = Node(node.val)
+            clones[node] = copy 
 
             for nei in node.neighbors:
-                double.neighbors.append(clone(nei))
+                copy.neighbors.append(clone(nei))
 
-            return double
+            return copy 
 
         return clone(node)
