@@ -3,27 +3,27 @@ class Solution:
         
         adj = {i:[] for i in range(n)}
 
-        for n1, n2 in edges:
-            adj[n1].append(n2)
-            adj[n2].append(n1) 
+        for n1, n2 in edges: 
+            adj[n1].append(n2) 
+            adj[n2].append(n1)
 
-        visit = set()
+        visit = set() 
 
         def dfs(node):
             if node in visit:
                 return 
-
-            visit.add(node)
+            
+            visit.add(node) 
 
             for nei in adj[node]:
-                dfs(nei)
-            
-            return 
+                dfs(nei) 
         
-        count = 0 
+
+        connect = 0 
+
         for i in range(n):
             if i not in visit:
-                dfs(i)
-                count += 1 
+                connect += 1 
+                dfs(i) 
 
-        return count
+        return connect
