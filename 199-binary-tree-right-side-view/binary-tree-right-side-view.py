@@ -16,16 +16,14 @@ class Solution:
         ans = [] 
 
         while queue:
-            group = []
+            ans.append(queue[-1].val)
             for i in range(len(queue)):
                 node = queue.popleft()
-                group.append(node.val)
 
                 if node.left:
                     queue.append(node.left)
                 if node.right:
                     queue.append(node.right) 
-            ans.append(group[-1])
 
         
         return ans
