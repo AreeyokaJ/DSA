@@ -8,7 +8,7 @@ class Solution:
 
         while l <= r: 
 
-            if nums[l] < nums[r]: 
+            if nums[l] <= nums[r]: 
                 #do something 
                 return min(nums[l] , ans) 
             
