@@ -5,23 +5,25 @@ class Solution:
         r = len(nums) - 1 
 
         while l <= r:
-            mid = (l + r) // 2 
+            mid = (l + r) // 2
 
-            if target == nums[mid]:
-                return mid
-            
-            #if we are on the left side of the array 
-            elif nums[mid] >= nums[l]:
+
+            if nums[mid] == target:
+                return mid 
+
+            elif nums[mid] >= nums[l]: 
                 if target > nums[mid] or target < nums[l]:
-                    l = mid + 1 
-                else:
+                    l = mid + 1
+                
+                else:# target < nums[mid] and target >= nums[l]:
                     r = mid - 1 
 
-            #if we are on the right side of the array 
             else:
-                if target > nums[r] or target < nums[mid]:
-                    r = mid - 1 
-                else:
+                if target > nums[mid] and target <= nums[r]:
                     l = mid + 1 
+                
+                else:
+                    r = mid - 1
+
         
         return -1 
