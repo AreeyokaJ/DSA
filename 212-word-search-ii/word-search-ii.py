@@ -14,31 +14,20 @@ class TrieNode:
         curr.word = True 
     
     def removeWord(self, word) -> None:
-        curr = self
-        nodeAndChildKey = [] 
+        curr = self 
+        storage = [] 
 
         for c in word:
-            nodeAndChildKey.append([curr, c])
-            curr = curr.children[c] 
-
-        for parentNode, childKey in reversed(nodeAndChildKey): 
-            targetNode = parentNode.children[childKey]
-            if len(targetNode.children) == 0:
-                del parentNode.children[childKey]
-                break
-            else: return 
+            storage.append([curr, c])
+            curr = curr.children[c]
         
-        # nodeAndChildKey, = []
-        # for char in word:
-        #     nodeAndChildKey.append((cur, char))
-        #     cur = cur.children[char]
+        for parentNode, childkey in reversed(storage):
+            childNode = parentNode.children[childkey]
+            
+            if len(childNode.children) == 0: 
+                del parentNode.children[childkey]
 
-        # for parentNode, childKey in reversed(nodeAndChildKey):
-        #     targetNode = parentNode.children[childKey]
-        #     if len(targetNode.children) == 0:
-        #         del parentNode.children[childKey]
-        #     else:
-        #         return
+
 
 class Solution:
     def findWords(self, board: List[List[str]], words: List[str]) -> List[str]:
