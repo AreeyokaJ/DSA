@@ -7,42 +7,41 @@ class Solution:
     def reorderList(self, head: Optional[ListNode]) -> None:
         """
         Do not return anything, modify head in-place instead.
-        """     
+        """
+        
         #find the middle 
-
         slow = head 
         fast = head.next 
 
         while fast and fast.next:
             slow = slow.next 
             fast = fast.next.next 
-
-
-        #break the list into two parts 
+        
+        #create two seperate lists 
         first = head 
-        second = slow.next 
-        slow.next = None 
+        second = slow.next
+        slow.next = None
 
-        #reverse the second part 
 
+        #reverse the 2nd list
         prev = None 
 
-        while second: 
+        while second:
             temp = second.next 
             second.next = prev 
             prev = second 
             second = temp 
-        
+
         second = prev
 
-        #interwine the two lists 
-
+        #interleave the two lists 
+        
         while second:
             temp1, temp2 = first.next, second.next 
 
-            first.next = second 
-            second.next = temp1 
+            first.next = second
+            second.next = temp1
 
-            first = temp1 
-            second = temp2
-
+            first = temp1
+            second = temp2 
+        
