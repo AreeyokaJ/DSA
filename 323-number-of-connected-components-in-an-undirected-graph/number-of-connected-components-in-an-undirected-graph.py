@@ -14,6 +14,8 @@ class Solution:
             visit.add(node) 
 
             for nei in adj[node]:
+                if nei in visit:
+                    continue
                 dfs(nei) 
             
             return 
