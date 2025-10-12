@@ -1,9 +1,8 @@
 class Solution:
     def queryResults(self, limit: int, queries: List[List[int]]) -> List[int]:
-        
+            
         colorToFreq = defaultdict(int)
         ballToColor = defaultdict(int)
-        distinct = set() 
         res = []
 
 
@@ -14,13 +13,10 @@ class Solution:
                 colorToFreq[oldColor] -= 1 
 
                 if colorToFreq[oldColor] == 0:
-                    distinct.remove(oldColor) 
-                
-            if color not in distinct:
-                distinct.add(color)
+                    del colorToFreq[oldColor]
                 
             colorToFreq[color] += 1 
             ballToColor[ball] = color 
-            res.append(len(distinct))
+            res.append(len(colorToFreq))
 
         return res
