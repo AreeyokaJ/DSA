@@ -8,7 +8,7 @@ class Solution:
 
             #out of bounds 
             if (min(r, c) < 0 or r == rows or c == cols or 
-            board[r][c] == "#" or word[i] != board[r][c]):
+             word[i] != board[r][c]):
                 return False
             
             temp = board[r][c]
