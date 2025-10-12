@@ -3,24 +3,18 @@ class Solution:
         """
         Do not return anything, modify rooms in-place instead.
         """
-         
+        queue = deque()
+        rows = len(rooms)
+        cols = len(rooms[0])
+
         def addRooms(r, c):
-            nonlocal d
-
             if min(r, c) < 0 or r == rows or c == cols:
-                return 
-
+                return
             if rooms[r][c] != 2147483647:
                 return 
             
-            queue.append((r, c))
             rooms[r][c] = d
-
-
-        
-        rows = len(rooms)
-        cols = len(rooms[0]) 
-        queue = deque()
+            queue.append((r, c))
 
         for r in range(rows):
             for c in range(cols):
@@ -33,10 +27,12 @@ class Solution:
 
             for i in range(len(queue)):
                 r, c = queue.popleft()
-
+                
                 addRooms(r + 1, c)
-                addRooms(r - 1, c)
-                addRooms(r, c + 1)
+                addRooms(r - 1, c) 
+                addRooms(r, c + 1) 
                 addRooms(r, c - 1) 
-
+            
             d += 1 
+
+        
