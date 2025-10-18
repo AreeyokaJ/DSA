@@ -27,12 +27,12 @@ class Solution:
             dfs(rows - 1, c, atl, heights[rows - 1][c])
 
         
-        both = set() 
+        ans = [] 
 
         for cordinate in pac:
             if cordinate in atl:
-                both.add(cordinate)
+                ans.append(cordinate)
 
-        return list(both)
+        return ans
 
         
