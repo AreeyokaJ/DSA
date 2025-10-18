@@ -4,45 +4,35 @@ class Solution:
         rows = len(heights)
         cols = len(heights[0])
 
-        atl = set()
         pac = set()
+        atl = set() 
 
-        def dfs(r, c, last, seen):
+        def dfs(r, c, visited, prev):
+            if min(r, c) < 0 or r == rows or c == cols or heights[r][c] < prev or (r, c) in visited: 
+                return 
 
-            if (min(r, c) < 0 or r == rows or
-                c == cols or (r, c) in seen or heights[r][c] < last):
-                return
+            visited.add((r,c))
 
-
-            seen.add((r, c))
-
-            dfs(r + 1, c, heights[r][c], seen)
-            dfs(r - 1, c, heights[r][c], seen)
-            dfs(r, c + 1, heights[r][c], seen)
-            dfs(r, c - 1, heights[r][c], seen)
-
-            return 
-        
-        #perform dfs among the borders 
-        
-        for c in range(cols): 
-            dfs(0, c, heights[0][c], pac)
-            dfs(rows - 1, c, heights[rows - 1][c], atl)
-
+            dfs(r + 1, c, visited, heights[r][c])
+            dfs(r - 1, c, visited,  heights[r][c])
+            dfs(r, c + 1, visited, heights[r][c])
+            dfs(r, c - 1, visited, heights[r][c])
+           
         for r in range(rows):
-            dfs(r, 0, heights[r][0], pac)
-            dfs(r, cols - 1, heights[r][cols -1], atl)
+            dfs(r, 0, pac, heights[r][0])
+            dfs(r, cols - 1, atl, heights[r][cols - 1])
+
+        for c in range(cols):
+            dfs(0, c, pac, heights[0][c])
+            dfs(rows - 1, c, atl, heights[rows - 1][c])
 
         
-        #return the ones that are in both sets 
-        ans = [] 
+        both = set() 
 
-        for coordinate in atl:
-            if coordinate in pac:
-                ans.append(coordinate)
+        for cordinate in pac:
+            if cordinate in atl:
+                both.add(cordinate)
 
-        return ans
+        return list(both)
 
-
-
-
+        
