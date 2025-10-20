@@ -1,11 +1,10 @@
 class Solution:
     def addBoldTag(self, s: str, words: List[str]) -> str:
-        
-        bold = [False] * len(s) 
+        bold = [False] * len(s)
 
 
-        for word in words: 
-            start = s.find(word)
+        for word in words:
+            start = s.find(word) 
             length = len(word) 
 
             while start != -1:
@@ -13,26 +12,24 @@ class Solution:
                     bold[i] = True 
 
                 start = s.find(word, start + 1) 
+
         
-
-
-        res = [] 
+        ans = [] 
 
         i = 0 
 
-        while i < len(s):
+        while i < len(s): 
             if bold[i]: 
-                res.append("<b>")
+                ans.append("<b>")
 
                 while i < len(s) and bold[i]:
-                    res.append(s[i])
+                    ans.append(s[i])
                     i += 1 
-            
-                res.append("</b>")
-        
 
-            else:
-                res.append(s[i])
+                ans.append("</b>") 
+            else: 
+                ans.append(s[i])
                 i += 1
-        
-        return "".join(res)
+
+
+        return "".join(ans)
