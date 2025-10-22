@@ -1,6 +1,8 @@
 class Solution:
     def eraseOverlapIntervals(self, intervals: List[List[int]]) -> int:
         
+
+
         intervals.sort(key = lambda i:i[0])
 
         lastEnd = intervals[0][1]
