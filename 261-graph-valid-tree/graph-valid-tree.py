@@ -14,6 +14,9 @@ class Solution:
             if n in cycle:
                 return False 
             
+            if n in visit:
+                return True
+            
             cycle.add(n)
             for nei in adj[n]:
                 if nei == prev:
