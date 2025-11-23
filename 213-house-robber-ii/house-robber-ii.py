@@ -1,16 +1,15 @@
 class Solution:
     def rob(self, nums: List[int]) -> int:
+    
+        return max(nums[0], self.helper(nums[:len(nums) - 1]), self.helper(nums[1:]))
 
-        return max(nums[0], self.robbing(nums[1:]), self.robbing(nums[:len(nums) -1]))
-
-    def robbing(self, nums): 
-
+    def helper(self, nums):
+        
         rob1, rob2 = 0, 0 
 
-        for num in nums:
-            temp = max(rob1 + num, rob2)
-            rob1 = rob2
-            rob2 = temp 
+        for n in nums:
+            temp = rob2 
+            rob2 = max(rob1 + n, rob2)
+            rob1 = temp 
         
         return rob2
-        
