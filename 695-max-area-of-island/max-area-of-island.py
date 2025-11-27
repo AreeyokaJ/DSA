@@ -22,6 +22,7 @@ class Solution:
         max_area = 0
         for r in range(rows):
             for c in range(cols):
-                max_area = max(max_area, dfs(r,c))
+                if grid[r][c] == 1:
+                    max_area = max(max_area, dfs(r,c))
 
         return max_area
