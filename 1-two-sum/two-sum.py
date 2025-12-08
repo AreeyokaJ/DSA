@@ -12,4 +12,5 @@ class Solution:
 
             else:
                 hashmap[num] = i 
+
         
