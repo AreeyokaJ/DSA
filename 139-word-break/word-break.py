@@ -3,17 +3,16 @@ class Solution:
         
         
         dp = [False] * (len(s) + 1)
-        dp[len(s)] = True 
+        dp[len(s)] = True
 
-
-        for i in range(len(s) -1, -1, -1):
-
+        for i in range(len(s) - 1 , -1, -1):
+        
             for word in wordDict:
-                if i + len(word) <= len(s) and word == s[i: len(word) + i]:
+                if len(word) + i <= len(s) and word == s[i: len(word) + i]:
                     dp[i] = dp[i + len(word)]
-                
-                if dp[i] == True:
+
+                if dp[i]:
                     break
 
-        
+
         return dp[0]
