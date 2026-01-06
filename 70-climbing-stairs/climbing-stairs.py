@@ -1,20 +1,21 @@
 class Solution:
     def climbStairs(self, n: int) -> int:
-        
-        if n == 1: return 1 
-        if n ==2 : return 2 
 
 
-        dp = [1, 2] 
+        cache = defaultdict(int)
 
-        i = 3
+        def climb(n):
+            if n == 1:
+                return 1 
 
-        while i <= n: 
+            if n == 2: 
+                return 2 
 
-            temp = dp[1]
-            dp[1] = dp[1] + dp[0]
-            dp[0] = temp 
-            i += 1 
+            if n in cache:
+                return cache[n] 
 
-        
-        return dp[1]
+            cache[n] = climb(n - 1) + climb(n - 2) 
+
+            return cache[n]
+
+        return climb(n)
