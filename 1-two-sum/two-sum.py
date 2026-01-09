@@ -1,7 +1,7 @@
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
         
-        hashmap = defaultdict(int)
+        hashmap = defaultdict(int) 
 
 
         for i, num in enumerate(nums):
@@ -13,4 +13,3 @@ class Solution:
             else:
                 hashmap[num] = i 
 
-        
