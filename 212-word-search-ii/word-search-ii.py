@@ -15,6 +15,22 @@ class TrieNode():
         
         curr.word = True
 
+    def prune_word(self, word): 
+        parent_child = [] 
+        curr = self 
+        for c in word:
+            parent_child.append([curr, c])
+            curr = curr.children[c] 
+
+    
+        for parent, childkey in reversed(parent_child):
+            childNode = parent.children[childkey] 
+
+            if not childNode.children: 
+                del parent.children[childkey] 
+            
+    
+
 class Solution:
     def findWords(self, board: List[List[str]], words: List[str]) -> List[str]:
         
@@ -44,6 +60,7 @@ class Solution:
             
             if node.word:
                 ans.add(prefix) 
+                root.prune_word(prefix)
 
             dfs(r + 1, c, prefix, node)
             dfs(r - 1 , c, prefix, node)
@@ -51,9 +68,6 @@ class Solution:
             dfs(r, c - 1, prefix, node)
 
             visit.remove((r, c)) 
-
-
-
 
 
         for r in range(rows):
