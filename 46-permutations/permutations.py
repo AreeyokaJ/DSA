@@ -4,10 +4,8 @@ class Solution:
         if len(nums) == 0:
             return [[]]
 
-        
         perms = self.permute(nums[1:])
-
-        res = []
+        res = [] 
 
 
         for perm in perms:
