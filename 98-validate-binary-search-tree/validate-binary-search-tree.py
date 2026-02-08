@@ -8,13 +8,17 @@ class Solution:
     def isValidBST(self, root: Optional[TreeNode]) -> bool:
         
         def dfs(root, left, right):
-            if not root:
+            if not root: 
                 return True 
+            
+            if root.val > left and root.val < right:
+                return dfs(root.left, left, root.val) and dfs(root.right, root.val, right)
+            
+            else:
+                return False
 
-            if not (left < root.val < right):
-                return False 
 
-            return dfs(root.left, left, root.val) and dfs(root.right, root.val, right)
-    
+
+
         
         return dfs(root, float("-inf"), float("inf"))
