@@ -8,40 +8,43 @@ class Solution:
         """
         Do not return anything, modify head in-place instead.
         """
-        
-        #find the middle 
+     
         slow = head 
-        fast = head.next 
+        fast = head.next
 
         while fast and fast.next:
-            slow = slow.next 
-            fast = fast.next.next 
+            slow = slow.next
+            fast = fast.next.next
 
-        #break the lists into two havles 
-        second = slow.next 
+ 
+        #sepeate it into two lists 
+
+
+        first = head 
+        second = slow.next
         slow.next = None
-        first = head
 
         #reverse the second list 
-
+        
         prev = None 
-
+        
         while second: 
-            temp = second.next
-            second.next = prev
-            prev = second
+            temp = second.next 
+            second.next = prev 
+            prev = second 
             second = temp 
 
-        second = prev
+        second = prev 
+
 
         #interleave the two lists 
-    
+        
         while second: 
-            temp1, temp2 = first.next, second.next 
+            temp1, temp2 = first.next, second.next
 
-            first.next = second
+            first.next = second 
             second.next = temp1
+            
+            first, second = temp1, temp2
 
-            first = temp1 
-            second = temp2
-    
+        
