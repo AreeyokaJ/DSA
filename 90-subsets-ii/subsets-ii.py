@@ -3,23 +3,24 @@ class Solution:
         
         ans = []
         subset = [] 
+
         nums.sort()
+
         def backtrack(i):
             if i >= len(nums):
                 ans.append(subset.copy())
                 return 
 
+            
             subset.append(nums[i]) 
             backtrack(i + 1) 
 
             subset.pop()
 
-            while i + 1 < len(nums) and nums[i] == nums[i + 1]:
+            while i < len(nums) - 1 and nums[i] == nums[i + 1]:
                 i += 1 
 
-
-            
-            backtrack(i + 1)
+            backtrack(i + 1) 
 
             return 
 
