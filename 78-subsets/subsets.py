@@ -1,23 +1,23 @@
 class Solution:
     def subsets(self, nums: List[int]) -> List[List[int]]:
         
-        ans = [] 
 
-        stack = []
+        ans = []
+        subset = []
+
 
         def backtrack(i):
             if i >= len(nums):
-                ans.append(stack.copy())
-                return
+                ans.append(subset.copy())
+                return 
 
-            stack.append(nums[i])
+
+            subset.append(nums[i])
+            backtrack(i + 1) 
+
+            subset.pop()
             backtrack(i + 1)
 
-            stack.pop()
-            backtrack(i + 1)
-        
-            return
 
-        
-        backtrack(0)
-        return ans
+        backtrack(0) 
+        return ans 
