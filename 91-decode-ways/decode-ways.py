@@ -4,28 +4,25 @@ class Solution:
                     "19", "20", "21", "22", "23", "24", "25", "26"}
 
 
+
         dp = {len(s):1} 
 
-        def dfs(i):
-            if i > len(s):
-                return 0 
 
+        def dfs(i):
             if i in dp:
                 return dp[i]
             
-            if s[i] == "0":
+            if  i > len(s) or s[i] == "0" :
                 return 0 
 
-            dp[i] = dfs(i + 1)
-            res = dp[i] 
+            
+            res = dfs(i + 1) 
+            dp[i] = res 
 
-
-            if s[i:i+2] in valid:
+            if s[i: i + 2] in valid:
                 res += dfs(i + 2) 
-                dp[i] = res
-
-            return res
+                dp[i] = res 
+            
+            return res 
 
         return dfs(0)
-
-            
