@@ -1,30 +1,16 @@
 class Solution:
     def uniquePaths(self, m: int, n: int) -> int:
-   
-        rows = m
-        cols = n
+        
+        row = [1] * n 
 
 
-        visited = set()
-        cache = {}
-        def dfs(r, c):
-            if min(r, c) < 0 or r == rows or c == cols:
-                return 0
+        for i in range(m - 1):
+            newRow = [1] * n 
 
-            if (r,c) in cache:
-                return cache[(r,c)]
+            for j in range(n - 2, -1, -1):
+                newRow[j] = newRow[j + 1] + row[j] 
 
-            if r == rows -1 and c == cols - 1: 
-                return 1 
-            
-            visited.add((r, c))
+            row = newRow 
 
-            cache[(r,c)] = dfs(r + 1, c) + dfs(r, c+ 1)
-
-            total = cache[(r, c)]
-
-            visited.remove((r, c)) 
-
-            return total 
-
-        return dfs(0, 0)
+        return row[0]
+        
