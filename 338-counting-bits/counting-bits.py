@@ -1,15 +1,13 @@
 class Solution:
     def countBits(self, n: int) -> List[int]:
-  
-        ans = []
+        
+        ans = [] 
+
         for i in range(n + 1):
             ans.append(self.hammer(i))
 
         return ans
-
-
-
-
+       
     def hammer(self, n):
         
         res = 0 
