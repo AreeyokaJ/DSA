@@ -1,23 +1,22 @@
 class Solution:
     def subsets(self, nums: List[int]) -> List[List[int]]:
         
+        ans = [] 
+        subset = [] 
 
-        ans = []
-        subset = []
-
-
-        def backtrack(i):
+        def dfs(i):
             if i >= len(nums):
                 ans.append(subset.copy())
                 return 
 
-
-            subset.append(nums[i])
-            backtrack(i + 1) 
+            
+            subset.append(nums[i]) 
+            dfs(i + 1) 
 
             subset.pop()
-            backtrack(i + 1)
+            dfs(i + 1) 
 
-
-        backtrack(0) 
-        return ans 
+            return 
+        
+        dfs(0)
+        return ans
