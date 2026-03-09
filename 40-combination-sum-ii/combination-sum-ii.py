@@ -10,22 +10,24 @@ class Solution:
         stack = [] 
         ans = []
 
-        def dfs(j, total): 
-            if total > target:
-                return
+        def dfs(i, total): 
 
             if total == target: 
                 ans.append(stack.copy())
                 return 
+
+            if total > target or i == len(candidates):
+                return
             
 
-            for i in range(j, len(candidates)):
-                if i >j and candidates[i] == candidates[i - 1]:
-                    continue 
+            stack.append(candidates[i])
+            dfs(i + 1, total + candidates[i])
+            stack.pop() 
 
-                stack.append(candidates[i])
-                dfs(i + 1, total + candidates[i]) 
-                stack.pop()
+            while i + 1 < len(candidates) and candidates[i] == candidates[i + 1]:
+                i += 1 
+
+            dfs(i + 1, total)
 
         dfs(0, 0)
 
