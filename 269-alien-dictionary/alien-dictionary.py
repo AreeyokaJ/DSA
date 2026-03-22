@@ -17,28 +17,32 @@ class Solution:
                     adj[w1[j]].add(w2[j]) 
                     break
 
-            
-
-        visited = {} 
+        visited = set()
+        cycle = set()
         ans = []
 
         def dfs(c):
-            if c in visited: 
-                return visited[c]
+            if c in cycle: 
+                return False 
 
-            
-            visited[c] = True 
+            if c in visited:
+                return True 
+
+            cycle.add(c) 
 
             for nei in adj[c]:
-                if dfs(nei): return True 
+                if not dfs(nei): return False 
 
-
-            visited[c] = False 
+            cycle.remove(c) 
+            visited.add(c) 
+        
             ans.append(c)
+            return True
+
 
         
         for c in adj:
-            if dfs(c):
+            if  not dfs(c):
                 return "" 
 
 
