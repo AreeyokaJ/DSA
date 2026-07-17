@@ -1,44 +1,46 @@
 class Solution:
     def minWindow(self, s: str, t: str) -> str:
         
+        if len(s) < len(t):
+            return ""
 
-        countT = defaultdict(int) 
 
-        for c in t: 
-            countT[c] += 1 
+        needMap = defaultdict(int) 
+        haveMap = defaultdict(int) 
 
-        
-        window = defaultdict(int) 
+        for c in t:
+            needMap[c] += 1
 
-        l = 0 
-        res = [-1, -1] 
-        need = len(countT)
+        need = len(needMap)
         have = 0 
-        minRes = float("inf")
 
-        for r in range(len(s)): 
-            window[s[r]] += 1 
+        l = 0
+        min_size = float("inf")
+        result = (0, 0)
 
-            if window[s[r]] == countT[s[r]]:
-                have += 1 
 
-            while have == need: 
-                if (r-l + 1) < minRes:
-                    minRes = r - l + 1
-                    res = [l, r]
-                
-                window[s[l]] -= 1 
-        
-                if s[l] in countT and window[s[l]] < countT[s[l]]: 
-                    have -= 1
+
+        for r in range(len(s)):
+            if s[r] in needMap:
+                haveMap[s[r]] += 1 
+                if haveMap[s[r]] == needMap[s[r]]:
+                    have += 1 
+
+            while have == need:
+                curr_size = (r -l) + 1
+
+                if curr_size < min_size:
+                    min_size = curr_size
+                    result = (l, r)
+
+                if s[l] in needMap:
+                    if haveMap[s[l]] == needMap[s[l]]:
+                        have -= 1
+                    
+                    haveMap[s[l]] -= 1
 
                 l += 1
 
-        
-        return s[res[0]:res[1] + 1]
-
-                
-
-
-
-
+        l, r = result
+    
+        return s[l:r + 1] if min_size < float("inf") else ""
