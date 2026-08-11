@@ -1,36 +1,38 @@
 class Solution:
     def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
         
+        indegree = [0] * numCourses
+        ordering = [] 
+        adj = {i:[] for i in range(numCourses)}
+        for course, preReq in prerequisites: 
+            indegree[course] += 1
+            adj[preReq].append(course)
 
-        adj = {i: [] for i in range(numCourses)}
+        q = deque() 
 
-        for course, preReq in prerequisites:
-            adj[course].append(preReq) 
+        for i in range(numCourses): 
+            if indegree[i] == 0: 
+                q.append(i)
 
+
+        while q: 
+            n = q.popleft() 
+            ordering.append(n) 
+
+            for course in adj[n]:
+                indegree[course] -= 1
+
+                if indegree[course] == 0:
+                    q.append(course) 
+
+        if len(ordering) != numCourses:
+            return []
+        
+        return ordering
 
         
-        visit = set() 
-        cycle = set() 
-        ans = [] 
 
-        def dfs(course):
-            if course in cycle:
-                return False 
 
-            if course in visit:
-                return True 
 
-            cycle.add(course)
-            for nei in adj[course]:
-                if not dfs(nei): return False 
 
-            cycle.remove(course)
-            ans.append(course)
-            visit.add(course)
-            return True 
 
-        
-        for i in range(numCourses):
-            if not dfs(i): return [] 
-
-        return ans
