@@ -3,13 +3,13 @@ class Solution:
         
         
 
-        # nums = [1, 3, 1, 7] 
-     # queries = [1,3, 2, 4] 
-     # [0, -1, 2, -1]
+     #  nums = [1, 3, 1, 7] 
+     #  queries = [1,3, 2, 4] 
+     #  [0, -1, 2, -1]
 
     
-        hashmap = defaultdict(int)
-        ans = []
+        hashmap = [-1] * (len(nums) + 1)
+        ans = [-1] * len(queries)
 
         occurrence = 0 
         for i, num in enumerate(nums):
@@ -19,11 +19,11 @@ class Solution:
                 hashmap[occurrence] = i 
 
         
-        for query in queries:
-            if query in hashmap:
-                ans.append(hashmap[query]) 
-            else:
-                ans.append(-1)
+        for i, query in enumerate(queries):
+
+            if query < len(hashmap) and hashmap[query] != -1:
+                ans[i] = (hashmap[query]) 
+        
         
         return ans
 
