@@ -1,23 +1,33 @@
 class Solution:
     def occurrencesOfElement(self, nums: List[int], queries: List[int], x: int) -> List[int]:
         
-        occurrences = [-1] * len(nums) 
+        
+
+        # nums = [1, 3, 1, 7] 
+     # queries = [1,3, 2, 4] 
+     # [0, -1, 2, -1]
+
+    
+        hashmap = defaultdict(int)
+        ans = []
 
         occurrence = 0 
-
-        res = []
-
-        for i, num in enumerate(nums): 
-            if num == x: 
-                occurrences[occurrence] = i 
-                occurrence += 1 
-
+        for i, num in enumerate(nums):
             
-        for query in queries: 
-            print(query- 1)
-            if query > len(occurrences) or occurrences[query - 1] == -1: 
-                res.append(-1) 
-            else:
-                res.append(occurrences[query - 1])
+            if num == x:
+                occurrence += 1 
+                hashmap[occurrence] = i 
 
-        return res
+        
+        for query in queries:
+            if query in hashmap:
+                ans.append(hashmap[query]) 
+            else:
+                ans.append(-1)
+        
+        return ans
+
+
+
+
+
